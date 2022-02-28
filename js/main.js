@@ -1,4 +1,4 @@
-// o'zgarmas teliklarimizni belgilab oldik 
+// o'zgarmas tezliklarimizni belgilab oldik 
 const ON_FOOT=3.6;
 const BICYCLE=20.1;
 const CAR=70;
@@ -12,6 +12,7 @@ var onfootEl=document.querySelector('.onfoot');
 var bicycleEl=document.querySelector('.bicycle');
 var carEl=document.querySelector('.car');
 var planeEl=document.querySelector('.plane')
+var answerEl=document.querySelector('.answer')
 
 //form da hodisa ro'y berganda amallar bajarilishi
 formEl.addEventListener('submit',function(evt){
@@ -25,7 +26,19 @@ formEl.addEventListener('submit',function(evt){
 
 //bu funksiya vatqni topish funksiyasi masofani tezlikka bo'lib beradi
 function getTime(distanceEl,sped){ //distanceEl bu yerda kiritilayotgan masofa ,sped bu o'rtacha tezligi
+    //shar bervommiz kirib kelayotgan malumot numbir tipida va noldan katta xolatda kelishini bilish maqsadida shart berdik
+    if(distanceEl<=0 || isNaN(distanceEl)){
+        answerEl.textContent="0 sonidan  katta son kiriting ,va raqam kiriting!!!"
+        answerEl.classList.add('answer-eror') // class qo'shdik xatoni ko'rsatish uchun 
+        return
+    }else{
+        answerEl.textContent=""
+        answerEl.classList.remove('answer-eror') // clasimizni ayirib tashladik
+    }
+       
     let time =distanceEl/sped //topilish jarayoni
+
+
     return normalizeTime(time) // va bizga qaytarsin shu natijani
 }
 
